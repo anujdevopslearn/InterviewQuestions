@@ -1,0 +1,52 @@
+apt-get update && apt-get upgrade
+apt-get update && apt-get install -y curl apt-transport-https docker.io
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+kubeadm init
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+ls -lart .kube/
+vi .kube/config
+kubeadm reset
+kubeadm init
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+export kubever=$(kubectl version | base64 | tr -d '\n')
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+
+kubectl get node
+kubectl get pods --all-namespaces
+kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl get pods --all-namespaces
+kubectl get node
+history
+
+
+
+kubectl create namespace application
+kubectl get pods --all-namespaces
+
+kubectl run kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
+
+kubectl get services
+
+kubectl expose deployment/kubernetes-bootcamp --port=8080 --target-port=8080 --type=NodePort
+
+kubectl expose deployment/kubernetes-bootcamp --port=8080 --target-port=8080 --type=LoadBalancer
+
+kubectl describe services kubernetes-bootcamp
+
+kubectl exec -ti $POD_NAME curl localhost:8080
+
+kubectl scale deployments/kubernetes-bootcamp --replicas=2
+
+kubectl get pods -o wide
+
+kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
+
+kubectl rollout undo deployments/kubernetes-bootcamp
+
+kubectl rollout status deployments/kubernetes-bootcamp

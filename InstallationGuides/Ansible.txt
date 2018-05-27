@@ -1,0 +1,38 @@
+ sudo apt-get install software-properties-common
+ sudo apt-add-repository ppa:ansible/ansible
+ sudo apt-get update
+ sudo apt-get install ansible
+
+
+ssh-keygen -t rsa
+
+Change the sshd_config
+
+PermitRootLogin yes
+
+service sshd restart
+
+
+ansible -m ping servers
+
+ansible -m ping all
+
+ansible -m ping host1
+
+
+ansible -m shell -a 'free -m' host1
+
+host1 ansible_ssh_host=192.0.2.1
+
+
+#cloud-config
+repo_update: true
+repo_upgrade: all
+
+packages
+- python
+
+runcmd:
+- [ sh, -c, "sed -i 's|prohibit-password|yes|g' /etc/ssh/sshd_config" ]
+- [ sh, -c, "apt-get -y install python" ]
+- [ sh, -c, 'echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1zeRiU+Zp5/eqLu8czbUKGq4UDT3Nkm4vufjEQBlQ55DumdT5CIVmwg3UFUkGWbfU+veM9j0NvPZVtefEGy6SHBnewkJfWD9K92g8V1i3f1SBsxl5k0QHoIcie/spRwWWS2a+CXP4WALCQ25KTySr3Rz3DvC/XbmoA8l5nEdgJoBY6DBHSb62RA3Ij56FAIOWN5W5pPFCzqnelYsFG3oYs46s2OroxWoKYRn3qmVDCzL2RwxQeuA7oI2afQZEWiMcNlytEibT3KvvTwZ9OcP7aX48waOPnjj3HbW6xNWHTaqTWU4H5yN7AWuA86K3G39iqBIr/rdRn/5BBohzmJjj" >> /root/.ssh/authorized_keys' ]

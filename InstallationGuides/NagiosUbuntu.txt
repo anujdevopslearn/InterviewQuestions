@@ -1,0 +1,198 @@
+apt-get install mailutils to install mailbox
+
+sudo useradd nagios
+sudo groupadd nagcmd
+sudo usermod -a -G nagcmd nagios
+
+sudo apt-get install build-essential libgd2-xpm-dev openssl libssl-dev xinetd apache2-utils apache2 unzip
+apt-get install php libapache2-mod-php php-mcrypt
+
+
+cd ~
+curl -L -O https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.3.4.tar.gz
+
+./configure --with-nagios-group=nagios --with-command-group=nagcmd 
+
+make all
+make install
+make install-commandmode
+make install-init
+make install-config
+
+sudo /usr/bin/install -c -m 644 sample-config/httpd.conf /etc/apache2/sites-available/nagios.conf
+
+a2ensite nagios
+
+sudo usermod -G nagcmd www-data
+
+
+sudo a2enmod rewrite
+sudo a2enmod cgi
+
+
+sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+htpasswd -b -c /usr/local/nagios/etc/htpasswd.users nagiosadmin nagiosadmin
+
+
+cd ~
+curl -L -O http://nagios-plugins.org/download/nagios-plugins-2.2.1.tar.gz
+
+./configure --with-nagios-user=nagios --with-nagios-group=nagios --with-openssl
+
+make
+
+make install
+
+
+/usr/local/nagios/etc/nagios.cfg
+
+Enable cfg_dir=/usr/local/nagios/etc/servers
+
+mkdir -p /usr/local/nagios/etc/servers
+
+Add below in command.cfg file
+
+define command{
+        command_name check_nrpe
+        command_line $USER1$/check_nrpe -H $HOSTADDRESS$ -c $ARG1$
+}
+
+To validate the config file
+
+/usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+
+And this is how to fix it:
+cd /etc/init.d/
+cp /etc/init.d/skeleton /etc/init.d/nagios
+
+Now edit the Nagios file:
+vim /etc/init.d/nagios
+
+... and add the following code:
+DESC="Nagios"
+NAME=nagios
+DAEMON=/usr/local/nagios/bin/$NAME
+DAEMON_ARGS="-d /usr/local/nagios/etc/nagios.cfg"
+PIDFILE=/usr/local/nagios/var/$NAME.lock
+
+Make it executable and start Nagios:
+chmod +x /etc/init.d/nagios
+service apache2 restart
+service nagios start
+
+On Client
+
+
+sudo apt-get install nagios-plugins nagios-nrpe-server
+
+server_address=client_private_IP
+allowed_hosts=nagios_server_private_IP
+
+service nagios-nrpe-server restart
+
+
+define host {
+        use                             linux-server
+        host_name                       yourhost
+        alias                           My first Apache server
+        address                         10.132.234.52
+        max_check_attempts              5
+        check_period                    24x7
+        notification_interval           30
+        notification_period             24x7
+}
+
+
+define service {
+        use                             generic-service
+        host_name                       yourhost
+        service_description             PING
+        check_command                   check_ping!100.0,20%!500.0,60%
+}
+
+
+define service {
+        use                             generic-service
+        host_name                       yourhost
+        service_description             SSH
+        check_command                   check_ssh
+        notifications_enabled           0
+}
+
+
+PHP installation
+
+
+
+Nagios Plugins
+
+
+Edit nrpe.cfg file and add below line
+command[custom_disk]=/usr/local/nagios/libexec/customDisk.sh
+
+Now Define a command in objects/commands.cfg
+
+define command{
+        command_name    custom_disk
+        command_line    $USER1$/check_nrpe -H $HOSTADDRESS$ -c custom_disk
+        }
+
+Now add the service in the objects/localhost.cfg
+
+define service{
+        use                             local-service         
+        host_name                       localhost
+        service_description             CUSTOM DISK
+        check_command                   custom_disk
+        notifications_enabled           0
+        }
+
+service nagios restart
+
+
+
+#!/bin/bash
+used_space=`df -h / | grep -v Filesystem | awk '{print $5}' | sed 's/%//g'`
+case $used_space in
+[1-84]*)
+echo "OK - $used_space% of disk space used."
+exit 0
+;;
+[85]*)
+echo "WARNING - $used_space% of disk space used."
+exit 1
+;;
+[86-100]*)
+echo "CRITICAL - $used_space% of disk space used."
+exit 2
+;;
+*)
+echo "UNKNOWN - $used_space% of disk space used."
+exit 3
+;;
+esac
+
+
+
+
+#!/bin/bash
+process=`ps -ef | grep jenkins | grep -v grep | wc -l`
+case $process in
+[3-6])
+echo "OK - Jenkins is running"
+exit 0
+;;
+[3-4])
+echo "WARNING - Jenkins not running completly"
+exit 1
+;;
+[2])
+echo "CRITICAL - Jenkins is not running"
+exit 2
+;;
+*)
+echo "UNKNOWN - Jenkins in unknown Status"
+exit 3
+;;
+esac
