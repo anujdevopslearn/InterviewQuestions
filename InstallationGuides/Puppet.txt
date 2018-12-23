@@ -1,0 +1,35 @@
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+sudo dpkg -i puppetlabs-release-pc1-xenial.deb
+sudo apt-get update -y
+
+apt-get install puppetserver -y
+
+sudo systemctl start puppetserver
+sudo systemctl enable puppetserver
+
+
+apt-get install puppet-agent -y
+
+vi /etc/puppetlabs/puppet/puppet.conf
+
+Add the following lines:
+
+[main]
+certname = puppet-agent
+server = puppet-server
+environment = IT
+
+
+sudo systemctl start puppet
+sudo systemctl enable puppet
+
+
+/opt/puppetlabs/bin/puppet cert list
+
+/opt/puppetlabs/bin/puppet cert sign puppet-agent
+
+/opt/puppetlabs/bin/puppet cert sign --all
+
+/opt/puppetlabs/bin/puppet agent --test
+
+/opt/puppetlabs/bin/puppet module install puppetlabs-apache
