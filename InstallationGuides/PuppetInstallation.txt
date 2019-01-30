@@ -1,0 +1,78 @@
+apt update
+wget https://apt.puppetlabs.com/puppet-release-bionic.deb
+dpkg -i puppet-release-bionic.deb
+apt-get install puppetmaster
+service puppet-master status
+
+Then add below entries in /etc/hosts file as below:
+
+echo "10.142.0.3 puppet puppet-master" >> /etc/hosts
+
+echo "10.142.0.4 puppet-client" >> /etc/hosts
+
+Then Edit puppet master configuration for memory allocation.
+
+vi /etc/default/puppet-master and add JAVA_ARGS="-Xms1024m -Xmx1024m"
+service puppet-master restart
+
+cat /etc/puppet/puppet.conf
+[main]
+ssldir = /var/lib/puppet/ssl
+
+[master]
+vardir = /var/lib/puppet
+cadir  = /var/lib/puppet/ssl/ca
+dns_alt_names = puppet-master
+certname = puppet
+
+puppet master --no-daemonize --verbose
+puppet resource service puppetmaster ensure=running
+puppet cert list
+puppet cert sign puppet-client.c.fluent-cyclist-193302.internal
+
+mkdir -p /etc/puppet/modules/apache2/manifests
+vi /etc/puppet/modules/apache2/manifests/init.pp and then add
+class apache2 {
+  package { 'apache2':
+    ensure => installed,
+  }
+
+  service { 'apache2':
+    ensure  => true,
+    enable  => true,
+    require => Package['apache2'],
+  }
+}
+
+mkdir -p /etc/puppet/manifests
+vi /etc/puppet/manifests/site.pp
+node 'puppet-client' {
+   include apache2
+}
+
+
+service puppet restart
+
+Agent Installation
+
+apt update
+apt install puppet
+
+cat /etc/puppet/puppet.conf
+[main]
+ssldir = /var/lib/puppet/ssl
+
+[agent]
+server = puppet-master
+
+
+puppet resource service puppet ensure=running
+puppet agent -t
+
+
+
+In order to Test Puppet Installation
+
+
+
+
