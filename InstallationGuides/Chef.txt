@@ -1,0 +1,71 @@
+wget https://packages.chef.io/files/stable/chef-server/12.18.14/ubuntu/16.04/chef-server-core_12.18.14-1_amd64.deb
+dpkg -i chef-server-core_12.18.14-1_amd64.deb
+chef-server-ctl reconfigure
+chef-server-ctl restart
+
+wget https://packages.chef.io/files/stable/chef-manage/2.5.16/ubuntu/16.04/chef-manage_2.5.16-1_amd64.deb
+dpkg -i chef-manage_2.5.16-1_amd64.deb
+chef-manage-ctl reconfigure
+
+chef-server-ctl install chef-manage 
+chef-server-ctl reconfigure 
+chef-manage-ctl reconfigure 
+
+chef-server-ctl user-create admin Anuj Sharma anuj_sharma401@yahoo.com 'password' --filename admin.pem
+chef-server-ctl org-create demo 'Chef Demo' --association_user admin --filename demo-validator.pem
+
+
+Chef Workstation
+
+wget https://packages.chef.io/files/stable/chefdk/1.2.22/ubuntu/14.04/chefdk_1.2.22-1_amd64.deb
+dpkg -i chefdk_1.2.22-1_amd64.deb
+cd chef-repo/
+mkdir .chef
+echo ".chef" >> .gitignore
+git add .
+git commit -m "Commit .. Excluding .chef directory"
+cd .chef/
+cp /root/*.pem .
+knife configure
+
+
+
+
+# See https://docs.getchef.com/config_rb_knife.html for more information on knife configuration options
+
+current_dir = File.dirname(__FILE__)
+log_level                :info
+log_location             STDOUT
+node_name                "admin"
+client_key               "#{current_dir}/admin.pem"
+validation_client_name    "demo-validator"
+validation_key            "/etc/chef/demo-validator.pem"
+chef_server_url          "https://35.154.189.114/organizations/demo/"
+cookbook_path            ["#{current_dir}/../cookbooks"]
+
+In chef client
+
+node_name                'chefclient'
+client_key               '/etc/chef/admin.pem'
+validation_client_name   'demo-validator'
+validation_key           '/etc/chef/demo-validator.pem'
+chef_server_url          'https://13.229.51.79/organizations/demo'
+ssl_verify_mode          :verify_none
+syntax_check_cache_path  '/etc/chef/syntax_check_cache'
+
+
+
+#!/bin/bash
+apt-get -y install git
+mkdir -p /etc/chef
+wget https://packages.chef.io/files/stable/chef/13.8.3/ubuntu/16.04/chef_13.8.3-1_amd64.deb
+dpkg -i chef_13.8.3-1_amd64.deb
+cd /etc/chef;git clone https://github.com/Anuj1990/Chef-Client.git .
+cd /etc/chef;sed -i 's|CHEF_CLIENT|'`hostname -i`'|g' client.rb
+chef-client
+
+
+
+
+
+
