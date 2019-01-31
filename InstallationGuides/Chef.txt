@@ -10,7 +10,7 @@ chef-manage-ctl reconfigure
 chef-server-ctl install chef-manage   (Optional in case we want to skip 6-7-8 Steps)
 chef-server-ctl reconfigure 
 
-chef-server-ctl user-create admin Anuj Sharma anuj_sharma401@yahoo.com 'password' --filename admin.pem
+chef-server-ctl user-create admin Anuj Sharma abc@abc.com 'password' --filename admin.pem
 chef-server-ctl org-create demo 'Chef Demo' --association_user admin --filename demo-validator.pem
 
 
