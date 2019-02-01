@@ -1,0 +1,32 @@
+- hosts: webservers
+  tasks:
+    - name: Install MySQL
+      action: apt pkg={{ item }} state=installed
+      with_items:
+       - libmysqlclient-dev
+       - python-mysqldb
+       - mysql-server
+       - mysql-client
+
+    - name: Start the MySQL service
+      action: service name=mysql state=started
+
+    - name: Remove the test database
+      mysql_db:  name=test state=absent
+
+    - name: Create deploy user for mysql
+      mysql_user: user="deploy" host="%" password=password priv=*.*:ALL,GRANT
+
+    - name: Ensure anonymous users are not in the database
+      mysql_user: user='' host={{ item }} state=absent
+      with_items:
+                  - 127.0.0.1
+                  - ::1
+                  - localhost
+
+    - name: Update mysql root password for all root accounts
+      mysql_user: name=root host={{ item }} password=password
+      with_items:
+                  - 127.0.0.1
+                  - ::1
+                  - localhost
