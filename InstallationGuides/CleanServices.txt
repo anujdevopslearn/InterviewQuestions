@@ -6,3 +6,4 @@ service apache2 stop
 service nginx stop
 service mysql stop
 service postgresql stop
+service jenkins stop
