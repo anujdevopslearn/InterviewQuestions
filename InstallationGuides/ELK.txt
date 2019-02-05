@@ -1,0 +1,64 @@
+sudo add-apt-repository -y ppa:webupd8team/java
+
+sudo apt-get update
+sudo apt-get -y install oracle-java8-installer
+
+wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
+
+sudo apt-get update
+
+sudo apt-get -y install elasticsearch
+
+Logstash Installation
+
+sudo apt-get update
+
+sudo apt-get install logstash
+
+apt-get update
+
+sudo apt-get -y install kibana
+
+
+apt-get install nginx apache2-utils
+
+sudo htpasswd -c /etc/nginx/htpasswd.users kibanaadmin
+
+sudo vi /etc/nginx/sites-available/default
+
+Delete the file's contents, and paste the following code block into the file. Be sure to update the server_name to match your server's name:
+
+/etc/nginx/sites-available/default
+server {
+    listen 80;
+
+    server_name example.com;
+
+    auth_basic "Restricted Access";
+    auth_basic_user_file /etc/nginx/htpasswd.users;
+
+    location / {
+        proxy_pass http://localhost:5601;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;        
+    }
+}
+
+service nginx restart
+
+
+
+cd ~
+curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip
+
+sudo apt-get -y install unzip
+
+unzip beats-dashboards-*.zip
+
+cd beats-dashboards-*
+./load.sh
