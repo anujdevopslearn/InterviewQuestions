@@ -1,4 +1,3 @@
-apt-get update && apt-get upgrade
 apt-get update && apt-get install -y curl apt-transport-https docker.io
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
