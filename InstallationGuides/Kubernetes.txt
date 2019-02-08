@@ -29,8 +29,6 @@ kubectl get services
 
 kubectl expose deployment/kubernetes-bootcamp --port=8080 --target-port=8080 --type=NodePort
 
-kubectl expose deployment/kubernetes-bootcamp --port=8080 --target-port=8080 --type=LoadBalancer
-
 kubectl describe services kubernetes-bootcamp
 
 kubectl exec -ti $POD_NAME curl localhost:8080
