@@ -5,11 +5,6 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.li
 apt-get update
 apt-get install -y kubelet kubeadm kubectl
 kubeadm init
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-ls -lart .kube/
-vi .kube/config
-kubeadm reset
-kubeadm init
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
