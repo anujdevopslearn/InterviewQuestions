@@ -27,9 +27,6 @@ cd .chef/
 cp /root/*.pem .
 knife configure
 
-
-
-
 # See https://docs.getchef.com/config_rb_knife.html for more information on knife configuration options
 
 current_dir = File.dirname(__FILE__)
@@ -51,20 +48,4 @@ validation_key           '/etc/chef/demo-validator.pem'
 chef_server_url          'https://13.229.51.79/organizations/demo'
 ssl_verify_mode          :verify_none
 syntax_check_cache_path  '/etc/chef/syntax_check_cache'
-
-
-
-#!/bin/bash
-apt-get -y install git
-mkdir -p /etc/chef
-wget https://packages.chef.io/files/stable/chef/13.8.3/ubuntu/16.04/chef_13.8.3-1_amd64.deb
-dpkg -i chef_13.8.3-1_amd64.deb
-cd /etc/chef;git clone https://github.com/Anuj1990/Chef-Client.git .
-cd /etc/chef;sed -i 's|CHEF_CLIENT|'`hostname -i`'|g' client.rb
-chef-client
-
-
-
-
-
 
