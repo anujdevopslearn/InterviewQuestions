@@ -1,0 +1,11 @@
+---
+- hosts: dbservers
+  tasks:
+     - name: Install apache2 package
+       apt: name=apache2 update_cache=yes state=latest
+
+     - name: ENable Mod Rewrite
+       apache2_module: name=rewrite state=present
+
+     - name: Restart Service
+       service: name=apache2 state=restarted
