@@ -1,5 +1,5 @@
 ---
-- hosts: dbservers
+- hosts: webservers
   tasks:
      - name: Install apache2 package
        apt: name=apache2 update_cache=yes state=latest
