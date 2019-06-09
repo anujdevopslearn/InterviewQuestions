@@ -9,3 +9,4 @@ service postgresql stop
 service jenkins stop
 
 apt remove --purge mysql-server* mysql-client* nginx apache2 postgresql jenkins
+apt remove --purge mysql-server-5.7 mysql-client-5.7 mysql-server mysql-client
