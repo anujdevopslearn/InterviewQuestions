@@ -8,5 +8,11 @@ service mysql stop
 service postgresql stop
 service jenkins stop
 
+
+For Nagios
+
 apt remove --purge mysql-server* mysql-client* nginx apache2 postgresql jenkins
-apt remove --purge mysql-server-5.7 mysql-client-5.7 mysql-server mysql-client
+apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2
+rm -rf /var/lib/mysql*
+rm -rf /var/log/mysql/
+mkdir /etc/mysql/conf.d
