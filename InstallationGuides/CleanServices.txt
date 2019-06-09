@@ -13,7 +13,7 @@ For Nagios
 
 apt remove --purge nginx apache2 postgresql jenkins
 apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2
-apt autormeove
+apt autoremove
 rm -rf /var/lib/mysql*
 rm -rf /var/log/mysql/
 mkdir -p /etc/mysql/conf.d
