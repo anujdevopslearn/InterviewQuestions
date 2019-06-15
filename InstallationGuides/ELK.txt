@@ -51,14 +51,9 @@ server {
 
 service nginx restart
 
+Commands to import Data to elasticsearch
 
-
-cd ~
-curl -L -O https://download.elastic.co/beats/dashboards/beats-dashboards-1.1.0.zip
-
-sudo apt-get -y install unzip
-
-unzip beats-dashboards-*.zip
-
-cd beats-dashboards-*
+cd
+git clone https://github.com/Anuj1990/ElasticSearchDataImport.git
+cd ElasticSearchDataImport
 ./load.sh
