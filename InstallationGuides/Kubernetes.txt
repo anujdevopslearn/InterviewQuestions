@@ -24,6 +24,9 @@ kubectl create namespace application
 kubectl get pods --all-namespaces
 
 kubectl run kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
+kubectl get deployments
+kubectl get pods
+
 kubectl run wordpress --image=wordpress:latest --port=80 --image-pull-policy=Never
 
 kubectl get services
