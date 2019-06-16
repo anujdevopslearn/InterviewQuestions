@@ -1,7 +1,5 @@
-sudo add-apt-repository -y ppa:webupd8team/java
-
 sudo apt-get update
-sudo apt-get -y install oracle-java8-installer
+sudo apt-get -y openjdk-8-jdk
 
 wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
@@ -9,18 +7,23 @@ echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" > /etc/apt/
 
 sudo apt-get update
 
+Elastic search Installation
+
 sudo apt-get -y install elasticsearch
+service elasticsearch restart
+service elasticsearch status
 
 Logstash Installation
 
-sudo apt-get update
-
 sudo apt-get install logstash
+service logstash restart
+service logstash status
 
 apt-get update
 
 sudo apt-get -y install kibana
-
+service kibana restart
+service kibana status
 
 apt-get install nginx apache2-utils
 
