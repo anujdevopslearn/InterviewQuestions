@@ -21,7 +21,7 @@ kubectl get deployments
 kubectl get pods
 kubectl describe pod kubernetes-bootcamp-7dc9765bf6-gbkjw
 
-kubectl run wordpress --image=wordpress:latest --port=80 --image-pull-policy=Never
+kubectl run wordpress --image=wordpress:latest --port=80
 
 kubectl get services
 
