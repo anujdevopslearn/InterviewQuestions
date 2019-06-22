@@ -21,5 +21,6 @@ mkdir -p /etc/mysql/conf.d
 
 For Kubernetes Clean up
 
+apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2 jenkins nginx
 docker rmi `docker images -q`
 docker rm `docker ps -a -q` -f
