@@ -15,13 +15,6 @@ kubectl get node
 kubectl get pods --all-namespaces
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl get pods --all-namespaces
-kubectl get node
-history
-
-
-
-kubectl create namespace application
-kubectl get pods --all-namespaces
 
 kubectl run kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
 kubectl get deployments
