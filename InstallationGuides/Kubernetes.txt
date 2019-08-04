@@ -34,6 +34,6 @@ kubectl get pods -o wide
 
 kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2
 
-kubectl rollout undo deployments/kubernetes-bootcamp
-
 kubectl rollout status deployments/kubernetes-bootcamp
+
+kubectl rollout undo deployments/kubernetes-bootcamp
