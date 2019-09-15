@@ -11,6 +11,8 @@ service jenkins stop
 
 For Nagios
 
+apt remove --purge php
+apt install php7.0
 apt remove --purge nginx apache2 postgresql jenkins
 apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2
 apt autoremove
