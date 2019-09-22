@@ -1,3 +1,11 @@
+apt update && apt-cache policy kubeadm
+apt install kubeadm=1.15.0-00 kubectl=1.15.0-00 kubelet=1.15.0-00
+
+Plugin Installation
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+
 apt-get update && apt-get install -y curl apt-transport-https docker.io
 service docker restart
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
