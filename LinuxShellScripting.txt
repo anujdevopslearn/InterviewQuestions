@@ -1,0 +1,17 @@
+Assignments problem Statement
+
+Write a script to get cpu information from server and print it.
+Create a generic script which will take directory name as argument and display directory size for the same.
+Disk space utilization of a specific disk shared as argument.
+Create a script which will take process pattern as argument and display total processes running on server.
+Print hostname, disk utilization, CPU utilization and memory utilization using shell script.
+Shell script to find files with extenstion .log in /var/log directory and make tar file backup after searching .log extenstion files.
+Create a shell script to read all items from an array and print on screen one by one.
+Create script to take directory path as argument and then check if directory is empty or not.
+Create shell script to find files older than 20 days and then delete them permanently from server.
+
+
+Reference Links:
+
+Shell Scripting:  https://www.ubuntupit.com/simple-yet-effective-linux-shell-script-examples/
+Shell Scripting Interview Questions:  https://linoxide.com/linux-shell-script/shell-scripting-interview-questions-answers/
