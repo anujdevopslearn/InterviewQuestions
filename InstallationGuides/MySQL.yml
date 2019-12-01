@@ -1,7 +1,7 @@
 - hosts: dbservers
   tasks:
      - name: Install MySQL
-       action: apt pkg={{ item }} state=installed
+       action: apt pkg={{ item }} state=present
        with_items:
            - libmysqlclient-dev
            - python-mysqldb
