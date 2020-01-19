@@ -1,0 +1,13 @@
+Nagios XI Installation  
+
+Installing Nagios XI by running curl https://assets.nagios.com/downloads/nagiosxi/install.sh | sh 
+
+Install aptitude by running apt-get install aptitude –y 
+
+In my case  it was libdbd-mysql-perl. So, the command becomes: aptitude install libdbd-mysql-perl 
+
+There will be two prompts. The first one will ask to use defaults to which you say ‘n’  
+
+The second one will ask you if you want to install all dependencies to which you say ‘Y’ 
+
+Once this completes, you can run the curl command and install Nagios XI without any issues.
