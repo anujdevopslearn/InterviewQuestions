@@ -7,13 +7,13 @@ echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" > /etc/apt/
 
 sudo apt-get update
 
-Elastic search Installation
+#Elastic search Installation
 
 sudo apt-get -y install elasticsearch
 service elasticsearch restart
 service elasticsearch status
 
-Logstash Installation
+#Logstash Installation
 
 sudo apt-get install logstash
 service logstash restart
