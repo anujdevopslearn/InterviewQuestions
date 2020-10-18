@@ -3,3 +3,4 @@ echo "deb https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.
 apt-get update
 apt install openjdk-8-jdk
 apt-get install jenkins
+service jenkins status
