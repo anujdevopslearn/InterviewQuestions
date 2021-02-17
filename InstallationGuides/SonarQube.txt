@@ -1,0 +1,22 @@
+cd /opt/
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.6.1.40680.zip
+unzip sonarqube-8.6.1.40680.zip 
+ls -lart
+mv sonarqube-8.6.1.40680 sonarqube
+rm sonarqube-8.6.1.40680.zip
+chown -R jenkins:jenkins sonarqube
+
+#Ran only since we were facing issue with apt update command
+rm -rf /etc/apt/sources.list.d/yarn.list*
+#Ran only since we were facing issue with apt update command
+
+apt update
+apt install openjdk-11-jdk
+
+
+#login to jenkins id in order to start SonarQube
+su - jenkins
+cd /opt/sonarqube/bin/linux-x86-64/
+./sonar.sh start
+
+#Then Start Accessing SonarQube using URL 	http://<IP-Address>:9000
