@@ -1,11 +1,15 @@
 apt update && apt-cache policy kubeadm
 
+# Common for both Master and Slave Machine
+
 apt-get update && apt-get install -y curl apt-transport-https docker.io
 service docker restart
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt install kubeadm=1.15.0-00 kubectl=1.15.0-00 kubelet=1.15.0-00
+
+#Limited to Master Node
 kubeadm init
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
