@@ -25,6 +25,6 @@ docker rmi `docker images -q`
 
 For Kubernetes Clean up
 
-apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2 jenkins nginx
+apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2 jenkins nginx kubeadm kubectl kubelet
 docker rm `docker ps -a -q` -f
 docker rmi `docker images -q`
