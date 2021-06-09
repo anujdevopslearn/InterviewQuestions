@@ -11,3 +11,4 @@ There will be two prompts. The first one will ask to use defaults to which you s
 The second one will ask you if you want to install all dependencies to which you say ‘Y’ 
 
 Once this completes, you can run the curl command and install Nagios XI without any issues.
+//test
