@@ -4,6 +4,7 @@ apt update && apt-cache policy kubeadm
 
 apt-get update && apt-get install -y curl apt-transport-https docker.io
 service docker restart
+echo '{"exec-opts": ["native.cgroupdriver=systemd"]}' >> /etc/docker/daemon.json (To Enable Systemd cgroupfs)
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
 apt-get update
