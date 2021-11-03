@@ -1,4 +1,4 @@
-apt update && apt-cache policy kubeadm
+
 
 # Common for both Master and Slave Machine
 
