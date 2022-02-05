@@ -1,5 +1,5 @@
 cd /opt/
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.6.1.40680.zip
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.3.0.51899.zip
 unzip sonarqube-8.6.1.40680.zip 
 ls -lart
 mv sonarqube-8.6.1.40680 sonarqube
