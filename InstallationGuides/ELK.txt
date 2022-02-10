@@ -1,27 +1,26 @@
-sudo apt-get update
-sudo apt-get install -y openjdk-8-jdk
+apt-get update
+apt-get install -y default-jdk
 
 wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list
 
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-6.x.list
-
-sudo apt-get update
+apt-get update
 
 #Elastic search Installation
 
-sudo apt-get -y install elasticsearch
+apt-get -y install elasticsearch
 service elasticsearch restart
 service elasticsearch status
 
 #Logstash Installation
 
-sudo apt-get install logstash
+apt-get install logstash
 service logstash restart
 service logstash status
 
-apt-get update
+#Kibana Installation
 
-sudo apt-get -y install kibana
+apt-get -y install kibana
 service kibana restart
 service kibana status
 
