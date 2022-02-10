@@ -24,6 +24,23 @@ apt-get -y install kibana
 service kibana restart
 service kibana status
 
+#Exposing Elasticsearch and Kibana to outside world
+
+vi /etc/elasticsearch/elasticsearch.yml         (Edit config using this command and then change content as per below details)
+
+network.host: 0.0.0.0
+discovery.seed_hosts: ["0.0.0.0"]
+
+vi /etc/kibana/kibana.yml         (Edit config using this command and then change content as per below details)
+
+server.host: "0.0.0.0"
+
+#After Above Changes are done restart in below sequence:
+
+service elasticsearch restart
+service kibana restart
+
+
 apt-get install nginx apache2-utils
 
 sudo htpasswd -c /etc/nginx/htpasswd.users kibanaadmin
