@@ -1,7 +1,7 @@
 #Login with root user and run below commands
 
 apt update
-apt install default-jdk
+apt install default-jdk unzip
 
 #Login with Ubuntu User and run below commands
 
