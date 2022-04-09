@@ -6,10 +6,6 @@ mv sonarqube-9.4.0.54424 sonarqube
 rm sonarqube-9.4.0.54424.zip
 chown -R jenkins:jenkins sonarqube
 
-#Ran only since we were facing issue with apt update command
-rm -rf /etc/apt/sources.list.d/yarn.list*
-#Ran only since we were facing issue with apt update command
-
 apt update
 apt install openjdk-11-jdk
 
