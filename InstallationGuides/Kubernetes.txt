@@ -28,6 +28,7 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 kubectl get node
 kubectl get pods --all-namespaces
 kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 kubectl get pods --all-namespaces
 
 kubectl create deployment kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
