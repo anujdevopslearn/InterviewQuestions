@@ -14,6 +14,7 @@ apt install kubeadm kubectl kubelet
 
 #Open Below file and then comment disabled_plugin for CRI Runtime
 vi /etc/containerd/config.toml    (Add # in front of disabled_plugin in this file and save it)
+service containerd restart
 
 kubeadm init
 mkdir -p $HOME/.kube
