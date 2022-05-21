@@ -8,7 +8,7 @@ service docker restart
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.list.d/kubernetes.list
 apt-get update
-apt install kubeadm kubectl kubelet
+apt -y install kubeadm kubectl kubelet
 
 #Limited to Master Node
 
