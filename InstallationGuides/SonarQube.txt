@@ -1,5 +1,6 @@
 #Login with root user and run below commands
 
+sudo su -
 apt update
 apt install default-jdk unzip
 
