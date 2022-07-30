@@ -14,7 +14,7 @@ For Nagios
 apt remove --purge php* -y 
 apt install php7.0 -y
 apt remove --purge nginx apache2 postgresql* -y
-apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2 -y
+apt remove --purge mysql-server-core-5.7 mysql-server-5.7 mysql-server mysql-client mysql-client-5.7 apache2 tomcat9 -y
 apt autoremove -y
 rm -rf /var/lib/mysql*
 rm -rf /var/log/mysql/
