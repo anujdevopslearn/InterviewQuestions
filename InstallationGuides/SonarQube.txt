@@ -5,7 +5,7 @@ apt update
 apt install default-jdk unzip
 exit
 
-#Login with None Root User and run below commands
+#Login with Non-Root User and run below commands(ubuntu)
 
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
 unzip sonarqube-9.4.0.54424.zip 
