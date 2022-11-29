@@ -1,0 +1,23 @@
+import jenkins.model.*
+import java.net.URLEncoder;
+
+// The credentials id with the username and password that will authenticate with the https git repo
+String credentialsId = 'creds'
+println 'creds'
+// The https repo url without 'https://'
+String httpsRepo = ''
+
+// A grep filter for the tags. If you don't want a filter at all then just delete the ` | grep ${filter}` statement below
+String filter = "${Environment}"
+
+def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+  com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null ).find{
+    it.id == credentialsId}
+    
+def usernameEncoded = URLEncoder.encode(creds.username.toString(), "UTF-8");
+def passwordEncoded = URLEncoder.encode(creds.password.toString(), "UTF-8");
+
+def proc = "git ls-remote --tags https://${usernameEncoded}:${passwordEncoded}@${httpsRepo}".execute() | 'cut -d/ -f3-'.execute() | 'sort -rnk3'.execute() | "grep ${filter}".execute() | 'grep -v {'.execute()
+proc.waitFor()
+def output = proc.in.text
+return output.tokenize()
