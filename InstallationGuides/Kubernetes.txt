@@ -14,11 +14,11 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >/etc/apt/sources.li
 apt-get update
 apt -y install kubeadm kubectl kubelet
 
-#Limited to Master Node
-
 #Open Below file and then comment disabled_plugin for CRI Runtime
 vi /etc/containerd/config.toml    (Add # in front of disabled_plugin in this file and save it)
 service containerd restart
+
+#Limited to Master Node
 
 kubeadm init
 mkdir -p $HOME/.kube
