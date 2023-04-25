@@ -18,7 +18,7 @@ apt -y install kubeadm kubectl kubelet
 vi /etc/containerd/config.toml    (Add # in front of disabled_plugin in this file and save it)
 service containerd restart
 
-#Limited to Master Node
+##################Limited to Master Node##################
 
 kubeadm init
 mkdir -p $HOME/.kube
@@ -26,6 +26,8 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubeadm token create --print-join-command
 kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+##################Limited to Master Node##################
 
 #Using Below Commands to Deploy Custom PODS
 kubectl get node
