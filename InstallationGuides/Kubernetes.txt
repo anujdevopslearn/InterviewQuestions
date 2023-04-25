@@ -1,6 +1,4 @@
-
-
-# Common for both Master and Slave Machine
+##################Common for both Master and Slave Machine##################
 
 apt-get update && apt-get install -y curl apt-transport-https
 sudo mkdir -p /etc/apt/keyrings
@@ -17,6 +15,8 @@ apt -y install kubeadm kubectl kubelet
 #Open Below file and then comment disabled_plugin for CRI Runtime
 vi /etc/containerd/config.toml    (Add # in front of disabled_plugin in this file and save it)
 service containerd restart
+
+##################Common for both Master and Slave Machine##################
 
 ##################Limited to Master Node##################
 
