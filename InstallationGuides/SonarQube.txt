@@ -8,10 +8,10 @@ exit
 #Login with Non-Root User and run below commands(ubuntu)
 
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.0.0.68432.zip -O sonarqube.zip
-unzip sonarqube-9.4.0.54424.zip 
+unzip sonarqube-10.0.0.68432.zip 
 ls -lart
-mv sonarqube-9.4.0.54424 sonarqube
-rm sonarqube-9.4.0.54424.zip
+mv sonarqube-10.0.0.68432 sonarqube
+rm sonarqube-10.0.0.68432.zip
 cd sonarqube/bin/linux-x86-64/
 ./sonar.sh start
 
