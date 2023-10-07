@@ -2,7 +2,7 @@
 
 sudo su -
 apt update
-apt install default-jdk unzip
+apt install -y default-jdk unzip
 exit
 
 #Login with Non-Root User and run below commands(ubuntu)
