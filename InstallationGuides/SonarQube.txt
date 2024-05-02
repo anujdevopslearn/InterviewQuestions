@@ -2,15 +2,15 @@
 
 sudo su -
 apt update
-apt install -y default-jdk unzip
+apt install -y openjdk-17-jdk unzip
 exit
 
 #Login with Non-Root User and run below commands(ubuntu)
 
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.8.0.63668.zip -O sonarqube.zip
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip -O sonarqube.zip
 unzip sonarqube.zip 
 ls -lart
-mv sonarqube-9.8.0.63668 sonarqube
+mv sonarqube-10.5.1.90531 sonarqube
 rm sonarqube.zip
 cd sonarqube/bin/linux-x86-64/
 ./sonar.sh start
