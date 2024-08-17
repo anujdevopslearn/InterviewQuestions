@@ -1,11 +1,6 @@
 ##################Common for both Master and Slave Machine##################
 
-apt-get update && apt-get install -y curl apt-transport-https
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install -y containerd.io docker-ce
+apt-get update && apt-get install -y docker.io
 
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
@@ -13,10 +8,6 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt -y install kubeadm kubectl kubelet
-
-#Open Below file and then comment disabled_plugin for CRI Runtime
-vi /etc/containerd/config.toml    (Add # in front of disabled_plugin in this file and save it)
-service containerd restart
 
 ##################Common for both Master and Slave Machine##################
 
