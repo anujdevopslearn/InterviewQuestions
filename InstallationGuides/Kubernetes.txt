@@ -1,4 +1,4 @@
-##################Common for both Master and Slave Machine##################
+################## Common for both Master/Controller and Worker Node ##################
 
 apt-get update && apt-get install -y docker.io
 
