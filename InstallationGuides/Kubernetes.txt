@@ -9,7 +9,7 @@ sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt -y install kubeadm kubectl kubelet
 
-##################Common for both Master and Slave Machine##################
+################## Common for both Master/Controller and Worker Node ##################
 
 ##################Limited to Master Node##################
 
