@@ -1,0 +1,33 @@
+wget -O splunk-9.3.0-51ccf43db5bd-linux-2.6-amd64.deb "https://download.splunk.com/products/splunk/releases/9.3.0/linux/splunk-9.3.0-51ccf43db5bd-linux-2.6-amd64.deb"
+
+sudo dpkg -i splunk-9.3.0-51ccf43db5bd-linux-2.6-amd64.deb
+
+sudo /opt/splunk/bin/splunk start --accept-license
+
+sudo /opt/splunk/bin/splunk enable boot-start
+
+Port 9997 will be opened
+
+sudo /opt/splunk/bin/splunk enable listen 9997
+
+
+Splunk FOrwarder
+
+wget -O splunkforwarder-9.3.0-51ccf43db5bd-linux-2.6-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/9.3.0/linux/splunkforwarder-9.3.0-51ccf43db5bd-linux-2.6-amd64.deb"
+
+dpkg -i splunkforwarder-9.3.0-51ccf43db5bd-linux-2.6-amd64.deb
+
+/opt/splunkforwarder/bin/splunk start --accept-license
+
+/opt/splunkforwarder/bin/splunk set deploy-poll 3.87.76.221:8089
+
+/opt/splunkforwarder/bin/splunk add forward-server 3.87.76.221:9997
+
+## Add files to monitor
+sudo /opt/splunkforwarder/bin/splunk add monitor /var/log 
+
+## bouce if required
+sudo /opt/splunkforwarder/bin/splunk restart
+
+## configure init.d
+sudo /opt/splunkforwarder/bin/splunk enable boot-start
