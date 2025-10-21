@@ -1,8 +1,8 @@
 apt-get update
 apt-get install -y default-jdk
 
-wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" > /etc/apt/sources.list.d/elastic-7.x.list
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/9.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-9.x.list
 
 apt-get update
 
@@ -76,3 +76,4 @@ cd
 git clone https://github.com/Anuj1990/ElasticSearchDataImport.git
 cd ElasticSearchDataImport
 ./load.sh
+
