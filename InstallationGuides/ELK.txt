@@ -31,6 +31,9 @@ vi /etc/elasticsearch/elasticsearch.yml         (Edit config using this command 
 network.host: 0.0.0.0
 discovery.seed_hosts: ["0.0.0.0"]
 
+# Disable security features
+xpack.security.enabled: false
+
 vi /etc/kibana/kibana.yml         (Edit config using this command and then change content as per below details)
 
 server.host: "0.0.0.0"
@@ -76,4 +79,5 @@ cd
 git clone https://github.com/Anuj1990/ElasticSearchDataImport.git
 cd ElasticSearchDataImport
 ./load.sh
+
 
