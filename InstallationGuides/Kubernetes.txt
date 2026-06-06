@@ -8,6 +8,7 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt -y install kubeadm kubectl kubelet
+sysctl -w net.ipv4.ip_forward=1
 
 ################## Common for both Master/Controller and Worker Node ##################
 
