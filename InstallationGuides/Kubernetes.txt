@@ -26,9 +26,12 @@ kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.29/net.yaml
 #Using Below Commands to Deploy Custom PODS
 kubectl get node
 kubectl get pods --all-namespaces
+
+# Execute below commands in case you want Controller plane to also work as worker node.
 kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 kubectl get pods --all-namespaces
+#####################
 
 kubectl create deployment kubernetes-bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
 kubectl get deployments
