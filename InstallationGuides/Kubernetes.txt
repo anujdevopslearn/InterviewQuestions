@@ -28,8 +28,11 @@ kubectl get node
 kubectl get pods --all-namespaces
 
 # Execute below commands in case you want Controller plane to also work as worker node.
-kubectl taint nodes --all node-role.kubernetes.io/master-
 kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+
+# Execute below in case we want to rollback and get the taint back
+kubectl taint nodes --all node-role.kubernetes.io/control-plane=:NoSchedule
+
 kubectl get pods --all-namespaces
 #####################
 
