@@ -19,7 +19,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubeadm token create --print-join-command
-kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.29/net.yaml
 
 ##################Limited to Master Node##################
 
