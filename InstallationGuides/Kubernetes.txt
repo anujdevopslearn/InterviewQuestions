@@ -14,11 +14,17 @@ sysctl -w net.ipv4.ip_forward=1
 
 ##################Limited to Master Node##################
 
+# Initialize Kubernetes Master Node
 kubeadm init
+
+# Commands to store Kube Config in Current User Home Directory
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# Command to create a token which will be used for generating kubeadm join command
 kubeadm token create --print-join-command
+
 kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.29/net.yaml
 
 ##################Limited to Master Node##################
