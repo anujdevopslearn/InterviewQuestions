@@ -1,0 +1,31 @@
+C:\Users\vikas\git-lab-vishal>git log --oneline --graph --decorate -n 30
+* c1ea539 (HEAD -> feat/profile, origin/feat/profile) add release notes for v0.1.0
+* d9bd2bb update project line b on feat/profile
+* 92f4e7e feat:add profie file
+* b2216b9 (main) Update project line to A on master
+* 6a34a8c (origin/main) docs: add project readme
+* 935ff23 (origin/master, origin/HEAD) Update ELK.txt
+* c680361 Update ELK.txt
+* e81bcd0 Update ELK.txt
+* 093308e Update Kubernetes.txt
+* 665f9f0 Update Kubernetes.txt
+* adbcf26 Update Kubernetes.txt
+* 6682d02 Create Splunk.txt
+* 92cd142 Update Kubernetes.txt
+* c334bbe Update Kubernetes.txt
+* dbee691 Update Kubernetes.txt
+* 9f2b09b Update SonarQube.txt
+* 8cb1df8 Update Kubernetes.txt
+* e4523ca Update Kubernetes.txt
+* 171b279 Update SonarQube.txt
+* 72d62e9 Update SonarQube.txt
+* 881873f Update SonarQube.txt
+* d9ad748 Update SonarQube.txt
+* 2fdfd98 Update Kubernetes.txt
+* 8e42a7a Update SonarQube.txt
+* e368980 Update Kubernetes.txt
+* 88936c0 Update Kubernetes.txt
+* cc03455 Add files via upload
+* bfec20f Update Kubernetes.txt
+* efe4c5c Add files via upload
+* d868caf Delete Readm
